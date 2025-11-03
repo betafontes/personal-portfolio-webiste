@@ -25,7 +25,7 @@ export const PageIntroduction = () => {
           para ver como foram criados, as tecnologias utilizadas e as funcionalidades implementadas.
         </p>
         <Link href="/" className="my-6">
-          <HiArrowNarrowLeft size={20} />
+          <HiArrowNarrowLeft size={20} className="animate-bounce-x-left" />
           Voltar para o Início
         </Link>
       </motion.div>

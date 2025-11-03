@@ -87,7 +87,7 @@ export const ProjectDetails = ({ project }: ProjectDetailsProps) => {
         </motion.div>
 
         <Link href="/projects">
-          <HiArrowNarrowLeft size={20} />
+          <HiArrowNarrowLeft size={20} className="animate-bounce-x-left"/>
           Voltar para projetos
         </Link>
       </div>

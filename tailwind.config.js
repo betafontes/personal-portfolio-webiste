@@ -16,9 +16,14 @@ module.exports = {
           '0%, 100%': { transform: 'translateX(0)' },
           '50%': { transform: 'translateX(6px)' },
         },
+        'bounce-x-left': {
+          '0%, 100%': { transform: 'translateX(0)' },
+          '50%': { transform: 'translateX(-6px)' },
+        },
       },
       animation: {
         'bounce-x': 'bounce-x 1.5s ease-in-out infinite',
+        'bounce-x-left': 'bounce-x-left 1.5s ease-in-out infinite',
       },
     },
   },

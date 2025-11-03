@@ -17,7 +17,7 @@ export const NavItem = ({ label, href, target }: NavItemProps) => {
     <Link
       href={href}
       className={cn(
-        'text-gray-400 flex items-center gap-2 font-mono font-medium text-[16px] hover:text-gray-200 transition-all',
+        'text-gray-400 flex items-center gap-2 font-mono font-medium text-[17px] hover:text-gray-200 transition-all',
         isActive && 'text-gray-200'
       )}
       target={target}

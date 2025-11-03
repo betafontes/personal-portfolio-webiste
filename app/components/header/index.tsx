@@ -43,7 +43,7 @@ export const Header = () => {
     >
       <motion.h1
         onClick={handleNavigateHome}
-        className="text-[18px] csm:text-[17px] font-mono font-semibold text-pink-400 cursor-pointer hover:opacity-80 transition-opacity"
+        className="text-[21px] csm:text-[17px] font-mono font-semibold text-pink-400 cursor-pointer hover:opacity-80 transition-opacity"
         initial={false}
         animate={{ opacity: scrolled ? 0 : 1, y: scrolled ? -10 : 0 }}
         transition={{ duration: 0.4 }}
@@ -56,7 +56,7 @@ export const Header = () => {
 
       <motion.h1
         onClick={handleNavigateHome}
-        className="absolute left-6 sm:left-10 text-[18px] csm:text-[17px] font-mono font-semibold text-pink-400 cursor-pointer hover:opacity-80 transition-opacity"
+        className="absolute left-6 sm:left-10 text-[21px] csm:text-[17px] font-mono font-semibold text-pink-400 cursor-pointer hover:opacity-80 transition-opacity"
         initial={{ opacity: 0 }}
         animate={{ opacity: scrolled ? 1 : 0, y: scrolled ? 0 : 10 }}
         transition={{ duration: 0.4 }}
