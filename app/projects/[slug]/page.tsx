@@ -1,0 +1,83 @@
+import { ProjectDetails } from '@/app/components/pages/project/project-details';
+import { ProjectSections } from '@/app/components/pages/project/project-section';
+import { ProjectPageData, ProjectsPageStaticData } from '@/app/types/page-info';
+import { fetchHygraphQuery } from '@/app/utils/fetch-hygraph-query';
+import { Metadata } from 'next';
+
+type ProjectProps = {
+  params: {
+    slug: string;
+  };
+};
+
+const defaultMetadata = {
+  title: 'Project',
+  description: 'Project page',
+};
+
+const getProjectDetails = async (slug: string): Promise<ProjectPageData> => {
+  const query = `
+    query ProjectQuery {
+      project(where: {slug: "${slug}"}) {
+        pageThumbnail { url }
+        thumbnail { url }
+        sections { title image { url } }
+        title
+        shortDescription
+        description { raw text }
+        technologies { name }
+        liveProjectUrl
+        githubUrl
+      }
+    }
+  `;
+  return fetchHygraphQuery(query, 60 * 60 * 24);
+};
+
+export default async function Project({ params: { slug } }: ProjectProps) {
+  const { project } = await getProjectDetails(slug);
+
+  if (!project) {
+    return (
+      <div className="flex items-center justify-center h-screen text-center text-gray-300">
+        <p>Projeto não encontrado.</p>
+      </div>
+    );
+  }
+
+  return (
+    <>
+      <ProjectDetails project={project} />
+      {project.sections?.length > 0 && <ProjectSections sections={project.sections} />}
+    </>
+  );
+}
+
+export async function generateStaticParams() {
+  const query = `
+    query ProjectSlugsQuery {
+      projects { slug }
+    }
+  `;
+  const { projects } = await fetchHygraphQuery<ProjectsPageStaticData>(query);
+  return projects || [];
+}
+
+export async function generateMetadata({ params: { slug } }: ProjectProps): Promise<Metadata> {
+  const data = await getProjectDetails(slug);
+  const project = data?.project;
+
+  if (!project) {
+    return defaultMetadata; 
+  }
+
+  return {
+    title: project.title ?? defaultMetadata.title,
+    description: project.description?.text ?? defaultMetadata.description,
+    openGraph: {
+      images: project.thumbnail?.url
+        ? [{ url: project.thumbnail.url, width: 1200, height: 630 }]
+        : [],
+    },
+  };
+}
