@@ -83,24 +83,36 @@ export const Header = () => {
 
       <AnimatePresence>
         {menuOpen && (
-          <motion.nav
-            key="mobile-menu"
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            transition={{ duration: 0.3 }}
-            className="fixed inset-0 top-14 bg-slate-900/95 backdrop-blur-lg flex flex-col items-center justify-center gap-6 sm:hidden z-[105]"
-          >
-            {NAV_ITEMS.map((item) => (
-              <div
-                key={item.label}
-                onClick={() => setMenuOpen(false)}
-                className="w-full flex justify-center"
-              >
-                <NavItem {...item} target={item.target} rel="noopener noreferrer" />
-              </div>
-            ))}
-          </motion.nav>
+          <>
+            <motion.div
+              key="overlay"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 0.7 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+              className="fixed inset-0 bg-slate z-[104]"
+              onClick={() => setMenuOpen(false)}
+            />
+
+            <motion.nav
+              key="mobile-menu"
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.3 }}
+              className="fixed top-14 left-0 right-0 bg-slate-900/95 backdrop-blur-lg flex flex-col items-center justify-center gap-6 sm:hidden z-[105] p-6"
+            >
+              {NAV_ITEMS.map((item) => (
+                <div
+                  key={item.label}
+                  onClick={() => setMenuOpen(false)}
+                  className="w-full flex justify-center"
+                >
+                  <NavItem {...item} target={item.target} rel="noopener noreferrer" />
+                </div>
+              ))}
+            </motion.nav>
+          </>
         )}
       </AnimatePresence>
     </motion.header>
