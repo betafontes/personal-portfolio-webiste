@@ -68,7 +68,7 @@ export async function generateMetadata({ params: { slug } }: ProjectProps): Prom
   const project = data?.project;
 
   if (!project) {
-    return defaultMetadata; 
+    return defaultMetadata;
   }
 
   return {
