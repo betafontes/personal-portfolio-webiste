@@ -14,8 +14,6 @@ export const WorkExperience = ({ experiences }: WorkExperienceProps) => {
           subtitle="experiências"
           title="Experiência Profissional"
           className="md:mt-10 sm:mt-32"
-          titleClassName="text-2xl"
-          subtitleClassName="text-base text-pink-300"
         />
         <p className="text-gray-400 mt-6">Minhas experiências profissionais como Desenvolvedora!</p>
       </div>
