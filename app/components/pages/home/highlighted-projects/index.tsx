@@ -16,8 +16,6 @@ export const HighlightedProjects = ({ projects }: HighlightedProjectsProps) => {
         subtitle="destaques"
         title="Projetos em destaque"
         className="md:mt-8 sm:mt-32"
-        titleClassName="text-2xl"
-        subtitleClassName="text-base text-pink-300"
       />
       <HorizontalDivider className="mb-16" />
 
